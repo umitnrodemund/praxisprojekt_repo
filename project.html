@@ -1,0 +1,117 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MV</title>
+    <link href="./lib/bootstrap5.3/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="./lib/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="./lib/main.css" rel="stylesheet">
+    <link href="./lib/ui.css" rel="stylesheet">
+    <link href="./project.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-view main-view-outer" id="main_view" explorer="hidden">
+        <div class="main-view-sidenav" collapsed="false">
+            <ul>
+                <li onclick="return false;">
+
+                    <i class="fa-solid fa-icons"></i>
+                    <span>Metadata</span>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+
+
+
+        <!-- Main content goes here -->
+        <div class="main-view-content" id="main-view-content">
+            <div>
+                <h2>Metadata Explorer</h2>
+                <div class="d-flex flex-column align-items-center justify-content-center border border-dashed border-secondary rounded p-4 bg-light"
+                    style="min-height: 200px; position: relative;">
+                    <i class="fas fa-cloud-upload-alt fa-3x text-secondary mb-3"></i>
+                    <p class="text-muted mb-3">Drag and drop your files here, or</p>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-folder-open me-2"></i> Select File
+                    </button>
+                    <input type="file" class="form-control"
+                        style="opacity: 0; position: absolute; top: 0; left: 0; height: 100%; width: 100%; cursor: pointer;">
+                </div>
+                <div id="content"></div>
+            </div>
+        </div>
+
+        <template tpl_id="metadata_content">
+            <div>
+                <div>
+                    <h2>Metadata</h2>
+
+                </div>
+                <div>
+                    <table class="metadata-table table-modern">
+                        <thead ><tr>
+                            <td>Name</td>
+                            <td>Value</td>
+                        </tr></thead>
+                        <tbody class="metadata-tablecontent">
+            
+                        </tbody>
+                    </table>
+
+                </div>              
+ 
+        </div>
+    </template>
+
+
+        <template tpl_id="discovery_table">
+            <div>
+                <div>
+                    <h2>Discoveries</h2>
+
+                </div>
+                <div>
+                    <table class="discovery-table table-modern">
+                        <thead ><tr>
+                            <td>Number</td>
+                            <td>Name</td>
+                            <td>Data</td>
+                        </tr></thead>
+                        <tbody class="discovery-tablecontent">
+            
+                        </tbody>
+                    </table>
+
+                </div>              
+ 
+        </div>
+    </template>
+    <template tpl_id="discovery_row">
+        <tr>
+            <td class="discovery_number">#</td>
+            <td class="discovery_name">Name</td>
+            <td class="discovery_data">Data</td>
+        </tr>
+    </template>
+    <template tpl_id="metadata_row">
+        <tr>
+            <td class="metadata_name">#</td>
+            <td class="metadata_value">#</td>
+        </tr>
+    </template>
+
+        <script src="lib/bootstrap5.3/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/jquery/jquery-3.7.1.min.js"></script>
+        <script src="lib/lang.js"></script>
+        <script src="lib/ui.js"></script>
+        <script src="project.js"></script>
+
+</body>
+
+</html>
