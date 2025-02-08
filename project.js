@@ -81,7 +81,7 @@ function execute(data) {
     var metatable = metanode.find(".metadata-table");
     var tablenode= $("#content").appendtpl("discovery_table");
     var tbl = tablenode.find(".discovery-table");
-
+    var tbl_overview = tablenode.find(".discovery-table-overview");
     
     addMetadataRow(metatable, "Name", data.response.output.engine.name);
     addMetadataRow(metatable, "UDI", data.response.output.engine.udi);
@@ -89,17 +89,30 @@ function execute(data) {
 
 
 
-
+    var findings={};
     $.each(data.response.output.response.engine_result.discovery, function (i, item) {
         var row = tbl.appendtpl("discovery_row");
         row.find(".discovery_number").text(i);
         row.find(".discovery_name").text(item.taxonomy[2].expression[0].label.name);
 
+
+        if (findings[item.taxonomy[2].expression[0].label.name] == undefined) {
+            findings[item.taxonomy[2].expression[0].label.name] = {};
+            findings[item.taxonomy[2].expression[0].label.name].count = 0;
+            findings[item.taxonomy[2].expression[0].label.name].volumes = [];
+            findings[item.taxonomy[2].expression[0].label.name].diameters = [];
+        }
+        findings[item.taxonomy[2].expression[0].label.name].count++;
+        findings[item.taxonomy[2].expression[0].label.name].volumes.push(parseFloat(item.taxonomy[1].quantity.value));
+        findings[item.taxonomy[2].expression[0].label.name].diameters.push(parseFloat(item.taxonomy[1].quantity.value));
+
+
+
         let datatext = "";
         if (item.taxonomy[0].expression[0].attributes[0].name = "Volume") {
             datatext =datatext + item.taxonomy[0].expression[0].attributes[1].name+"<br />";
             datatext =datatext + "Volume: " 
-            + parseFloat(item.taxonomy[1].quantity.value).toFixed(2) 
+            + parseFloat(item.taxonomy[0].quantity.value).toFixed(2) 
             + " "
             + ((item.taxonomy[0].quantity.units.name=="Cubic Millimeter")?"mm³":item.taxonomy[0].quantity.units.name)
             + "<br />";
@@ -112,6 +125,12 @@ function execute(data) {
             + "<br />";
         }
         row.find(".discovery_data").html(datatext);
+
+
+
+    });
+    $.each(findings, function (i, item) {
+        addMetadataRow(tbl_overview, i, item.count);
     });
 
 
