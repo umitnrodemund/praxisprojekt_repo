@@ -103,7 +103,7 @@ function execute(data) {
             findings[item.taxonomy[2].expression[0].label.name].diameters = [];
         }
         findings[item.taxonomy[2].expression[0].label.name].count++;
-        findings[item.taxonomy[2].expression[0].label.name].volumes.push(parseFloat(item.taxonomy[1].quantity.value));
+        findings[item.taxonomy[2].expression[0].label.name].volumes.push(parseFloat(item.taxonomy[0].quantity.value));
         findings[item.taxonomy[2].expression[0].label.name].diameters.push(parseFloat(item.taxonomy[1].quantity.value));
 
 
